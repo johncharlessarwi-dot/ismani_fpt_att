@@ -17,7 +17,78 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: python -m pip install -r requirements.txt
-      - run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Test 01
+        run: python -m unittest discover -s tests -p 'test_01.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 02
+        run: python -m unittest discover -s tests -p 'test_02.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 03
+        run: python -m unittest discover -s tests -p 'test_03.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 04
+        run: python -m unittest discover -s tests -p 'test_04.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 05
+        run: python -m unittest discover -s tests -p 'test_05.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 06
+        run: python -m unittest discover -s tests -p 'test_06.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 07
+        run: python -m unittest discover -s tests -p 'test_07.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 08
+        run: python -m unittest discover -s tests -p 'test_08.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 09
+        run: python -m unittest discover -s tests -p 'test_09.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 10
+        run: python -m unittest discover -s tests -p 'test_10.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 11
+        run: python -m unittest discover -s tests -p 'test_11.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 12
+        run: python -m unittest discover -s tests -p 'test_12.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 13
+        run: python -m unittest discover -s tests -p 'test_13.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 14
+        run: python -m unittest discover -s tests -p 'test_14.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
+      - name: Test 15
+        run: python -m unittest discover -s tests -p 'test_15.py' -v
         env:
           SECRET_KEY: test-only-secret-key
           ADMIN_TOKEN: test-only-admin-token-1234567890
