@@ -61,6 +61,18 @@ def safe_metadata(value, limit=100):
     return value[:limit] if isinstance(value, str) else ''
 
 
+def safe_coordinate(value, bound):
+    if value in ('', None):
+        return ''
+    try:
+        number = float(value)
+        if not (-bound <= number <= bound):
+            return ''
+        return str(number)
+    except (TypeError, ValueError):
+        return ''
+
+
 def build_fingerprint(data: dict) -> str:
     raw = f"{data.get('user_agent')}{data.get('screen_resolution')}{data.get('timezone')}{data.get('language')}{data.get('canvas_hash')}"
     return hashlib.sha256(raw.encode()).hexdigest()
@@ -143,8 +155,8 @@ def submit():
         screen_resolution=fingerprint_data['screen_resolution'],
         timezone=fingerprint_data['timezone'],
         language=fingerprint_data['language'],
-        latitude=data.get('latitude', ''),
-        longitude=data.get('longitude', ''),
+        latitude=safe_coordinate(data.get('latitude'), 90),
+        longitude=safe_coordinate(data.get('longitude'), 180),
         date_only=today
     )
     db.session.add(record)
