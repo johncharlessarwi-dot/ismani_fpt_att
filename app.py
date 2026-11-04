@@ -207,7 +207,9 @@ def admin():
     today = date.today()
     records = Attendance.query.filter_by(date_only=today).order_by(Attendance.submitted_at.desc()).all()
     all_records = Attendance.query.order_by(Attendance.submitted_at.desc()).limit(100).all()
-    return render_template('admin.html', records=records, all_records=all_records, today=today)
+    response = app.make_response(render_template('admin.html', records=records, all_records=all_records, today=today))
+    response.headers['Cache-Control'] = 'no-store, private'
+    return response
 
 
 with app.app_context():
