@@ -53,9 +53,8 @@ class Attendance(db.Model):
 
 
 def get_ip():
-    if request.headers.get('X-Forwarded-For'):
-        return request.headers.get('X-Forwarded-For').split(',')[0].strip()
-    return request.remote_addr
+    # Forwarded headers are user-controlled unless a trusted proxy is configured.
+    return request.remote_addr or 'unknown'
 
 
 def build_fingerprint(data: dict) -> str:
