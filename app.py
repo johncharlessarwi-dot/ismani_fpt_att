@@ -57,6 +57,10 @@ def get_ip():
     return request.remote_addr or 'unknown'
 
 
+def safe_metadata(value, limit=100):
+    return value[:limit] if isinstance(value, str) else ''
+
+
 def build_fingerprint(data: dict) -> str:
     raw = f"{data.get('user_agent')}{data.get('screen_resolution')}{data.get('timezone')}{data.get('language')}{data.get('canvas_hash')}"
     return hashlib.sha256(raw.encode()).hexdigest()
@@ -97,10 +101,10 @@ def submit():
     # Build device fingerprint
     fingerprint_data = {
         'user_agent': user_agent,
-        'screen_resolution': data.get('screen_resolution', ''),
-        'timezone': data.get('timezone', ''),
-        'language': data.get('language', ''),
-        'canvas_hash': data.get('canvas_hash', ''),
+        'screen_resolution': safe_metadata(data.get('screen_resolution'), 20),
+        'timezone': safe_metadata(data.get('timezone'), 50),
+        'language': safe_metadata(data.get('language'), 20),
+        'canvas_hash': safe_metadata(data.get('canvas_hash'), 100),
     }
     fingerprint = build_fingerprint(fingerprint_data)
 
@@ -136,9 +140,9 @@ def submit():
         device_fingerprint=fingerprint,
         ip_address=ip,
         user_agent=user_agent,
-        screen_resolution=data.get('screen_resolution', ''),
-        timezone=data.get('timezone', ''),
-        language=data.get('language', ''),
+        screen_resolution=fingerprint_data['screen_resolution'],
+        timezone=fingerprint_data['timezone'],
+        language=fingerprint_data['language'],
         latitude=data.get('latitude', ''),
         longitude=data.get('longitude', ''),
         date_only=today
