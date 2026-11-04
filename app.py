@@ -83,6 +83,9 @@ def submit():
     if not reg_number or not full_name or not company:
         return jsonify({'success': False, 'message': 'All fields are required.'}), 400
 
+    if any(len(value) > limit for value, limit in ((reg_number, 50), (full_name, 100), (company, 100))):
+        return jsonify({'success': False, 'message': 'A field exceeds the allowed length.'}), 400
+
     # Build device fingerprint
     fingerprint_data = {
         'user_agent': user_agent,
