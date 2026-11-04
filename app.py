@@ -73,9 +73,11 @@ def submit():
     if not isinstance(data, dict):
         return jsonify({'success': False, 'message': 'A JSON object is required.'}), 400
 
-    reg_number = data.get('reg_number', '').strip().upper()
-    full_name = data.get('full_name', '').strip()
-    company = data.get('company', '').strip()
+    if any(not isinstance(data.get(field), str) for field in ('reg_number', 'full_name', 'company')):
+        return jsonify({'success': False, 'message': 'Attendance fields must be text.'}), 400
+    reg_number = data['reg_number'].strip().upper()
+    full_name = data['full_name'].strip()
+    company = data['company'].strip()
     user_agent = request.headers.get('User-Agent', '')
     ip = get_ip()
     today = date.today()
