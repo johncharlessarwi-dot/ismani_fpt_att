@@ -5,6 +5,7 @@ from datetime import datetime, date
 from dotenv import load_dotenv
 import hashlib
 import os
+import re
 
 load_dotenv()
 
@@ -87,6 +88,9 @@ def submit():
 
     if any(len(value) > limit for value, limit in ((reg_number, 50), (full_name, 100), (company, 100))):
         return jsonify({'success': False, 'message': 'A field exceeds the allowed length.'}), 400
+
+    if not re.fullmatch(r'[A-Z0-9][A-Z0-9/._-]{1,49}', reg_number):
+        return jsonify({'success': False, 'message': 'Invalid registration number format.'}), 400
 
     # Build device fingerprint
     fingerprint_data = {
