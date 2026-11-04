@@ -7,6 +7,7 @@ import hashlib
 import hmac
 import os
 import re
+import logging
 
 load_dotenv()
 
@@ -199,8 +200,8 @@ Fingerprint: {fingerprint[:16]}...
 """
         )
         mail.send(msg)
-    except Exception as e:
-        print(f"Mail error: {e}")  # don't fail the request if mail fails
+    except Exception:
+        app.logger.warning('Attendance notification was not delivered')  # no secrets in logs
 
     return jsonify({
         'success': True,
