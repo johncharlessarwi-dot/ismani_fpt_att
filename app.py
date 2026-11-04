@@ -4,6 +4,7 @@ from flask_mail import Mail, Message
 from datetime import datetime, date
 from dotenv import load_dotenv
 import hashlib
+import hmac
 import os
 import re
 
@@ -194,9 +195,9 @@ Fingerprint: {fingerprint[:16]}...
 
 @app.route('/admin')
 def admin():
-    # basic — protect this with auth later
-    token = request.args.get('token')
-    if token != os.getenv('ADMIN_TOKEN', 'changeme'):
+    configured_token = os.getenv('ADMIN_TOKEN', '')
+    supplied_token = request.headers.get('X-Admin-Token', '')
+    if not configured_token or len(configured_token) < 24 or not hmac.compare_digest(supplied_token, configured_token):
         return 'Unauthorized', 401
 
     today = date.today()
