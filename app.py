@@ -163,11 +163,14 @@ def submit():
     db.session.add(record)
     db.session.commit()
 
-    # Send email alert
+    # Send email alert only when a recipient has been configured.
+    recipient = os.getenv('NOTIFY_EMAIL')
     try:
+        if not recipient:
+            raise ValueError('NOTIFY_EMAIL is not configured')
         msg = Message(
             subject=f'[FPT Attendance] {reg_number} — {today}',
-            recipients=[os.getenv('NOTIFY_EMAIL')],
+            recipients=[recipient],
             body=f"""
 New FPT Attendance Submission
 ==============================
