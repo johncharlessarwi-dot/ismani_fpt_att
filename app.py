@@ -69,7 +69,9 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({'success': False, 'message': 'A JSON object is required.'}), 400
 
     reg_number = data.get('reg_number', '').strip().upper()
     full_name = data.get('full_name', '').strip()
