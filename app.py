@@ -80,6 +80,14 @@ def build_fingerprint(data: dict) -> str:
     return hashlib.sha256(raw.encode()).hexdigest()
 
 
+@app.after_request
+def add_security_headers(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['Referrer-Policy'] = 'no-referrer'
+    return response
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
