@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/readme/project-motion.svg" width="100%" alt="ISMANI FPT TRACKER animated overview banner" />
+</div>
+
 # 🌍 FPT HR REPORT — FIELD PRACTICAL TRAINING TRACKER
 
 <div align="center">
