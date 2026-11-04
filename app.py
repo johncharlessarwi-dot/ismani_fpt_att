@@ -92,6 +92,9 @@ def submit():
     if not re.fullmatch(r'[A-Z0-9][A-Z0-9/._-]{1,49}', reg_number):
         return jsonify({'success': False, 'message': 'Invalid registration number format.'}), 400
 
+    if company not in {'Ismani Tours and Safari', 'Visit Kili Adventures', 'Kilinge Adventures'}:
+        return jsonify({'success': False, 'message': 'Unknown placement company.'}), 400
+
     # Build device fingerprint
     fingerprint_data = {
         'user_agent': user_agent,
