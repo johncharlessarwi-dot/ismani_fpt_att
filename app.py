@@ -8,6 +8,7 @@ import hmac
 import os
 import re
 import logging
+import math
 
 load_dotenv()
 
@@ -69,7 +70,7 @@ def safe_coordinate(value, bound):
         return ''
     try:
         number = float(value)
-        if not (-bound <= number <= bound):
+        if not math.isfinite(number) or not (-bound <= number <= bound):
             return ''
         return str(number)
     except (TypeError, ValueError):
