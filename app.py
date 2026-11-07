@@ -220,7 +220,7 @@ Fingerprint: {fingerprint[:16]}...
 def admin():
     configured_token = os.getenv('ADMIN_TOKEN', '')
     supplied_token = request.headers.get('X-Admin-Token', '')
-    if not configured_token or len(configured_token) < 24 or not hmac.compare_digest(supplied_token, configured_token):
+    if len(supplied_token) > 256 or not configured_token or len(configured_token) < 24 or not hmac.compare_digest(supplied_token, configured_token):
         return 'Unauthorized', 401
 
     today = date.today()
