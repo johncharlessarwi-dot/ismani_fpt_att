@@ -69,7 +69,7 @@ def safe_metadata(value, limit=100):
 
 
 def safe_coordinate(value, bound):
-    if value in ('', None):
+    if isinstance(value, bool) or value in ('', None):
         return ''
     try:
         number = float(value)
