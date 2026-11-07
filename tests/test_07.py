@@ -15,4 +15,6 @@ class MetadataTest(unittest.TestCase):
     def test_zero_limit_is_empty(self):
         self.assertEqual(safe_metadata('xyz', 0), '')
 
+    def test_list_metadata_is_ignored(self):
+        self.assertEqual(safe_metadata(['Chrome']), '')
 if __name__ == '__main__': unittest.main()
