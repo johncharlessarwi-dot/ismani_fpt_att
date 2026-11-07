@@ -10,4 +10,6 @@ class CoordinatesTest(unittest.TestCase):
 
     def test_rejects_nonnumber_longitude(self):
         self.assertEqual(safe_coordinate('invalid', 180), '')
+    def test_rejects_overbound_longitude(self):
+        self.assertEqual(safe_coordinate('181', 180), '')
 if __name__ == '__main__': unittest.main()
