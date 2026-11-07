@@ -13,7 +13,9 @@ import math
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'change-this-in-production')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'development-only-key')
+if os.getenv('FLASK_ENV') == 'production' and not os.getenv('SECRET_KEY'):
+    raise RuntimeError('SECRET_KEY must be configured in production')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///attendance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024
