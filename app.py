@@ -110,6 +110,8 @@ def submit():
 
     if any(not isinstance(data.get(field), str) for field in ('reg_number', 'full_name', 'company')):
         return jsonify({'success': False, 'message': 'Attendance fields must be text.'}), 400
+    if len(data['reg_number']) > 100:
+        return jsonify({'success': False, 'message': 'Registration number is too long.'}), 400
     reg_number = data['reg_number'].strip().upper()
     full_name = ' '.join(data['full_name'].split())
     company = data['company'].strip()
