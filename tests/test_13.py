@@ -11,4 +11,7 @@ class SecurityHeadersTest(unittest.TestCase):
     def test_referrer_policy(self):
         with app.test_client() as client:
             self.assertEqual(client.get('/').headers.get('Referrer-Policy'), 'no-referrer')
+    def test_legacy_cross_domain_disabled(self):
+        with app.test_client() as client:
+            self.assertEqual(client.get('/').headers.get('X-Permitted-Cross-Domain-Policies'), 'none')
 if __name__=='__main__': unittest.main()
