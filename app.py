@@ -206,7 +206,7 @@ Name:        {full_name}
 Reg Number:  {reg_number}
 Company:     {company}
 Time:        {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} UTC
-IP Address:  {ip}
+IP Address:  [redacted from email notification]
 Device:      {user_agent[:80]}
 Resolution:  {data.get('screen_resolution', 'N/A')}
 Timezone:    {data.get('timezone', 'N/A')}
