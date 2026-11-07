@@ -150,7 +150,7 @@ def submit():
     if device_today:
         return jsonify({
             'success': False,
-            'message': f'This device already submitted attendance today for {device_today.reg_number}. One submission per device per day.'
+            'message': 'This device has already submitted attendance today.'
         }), 403
 
     # Check 2: has this reg number already submitted today?
