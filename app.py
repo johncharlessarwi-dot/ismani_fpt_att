@@ -132,6 +132,9 @@ def submit():
     if any(ord(char) < 32 or ord(char) == 127 for char in full_name + company):
         return jsonify({'success': False, 'message': 'Control characters are not allowed.'}), 400
 
+    if not user_agent.strip():
+        return jsonify({'success': False, 'message': 'A browser user agent is required.'}), 400
+
     # Build device fingerprint
     fingerprint_data = {
         'user_agent': user_agent,
