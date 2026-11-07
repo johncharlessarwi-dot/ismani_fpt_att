@@ -12,5 +12,7 @@ class MetadataTest(unittest.TestCase):
         self.assertEqual(len(safe_metadata('x'*1000, 1000)), 512)
     def test_invalid_limit_falls_back(self):
         self.assertEqual(len(safe_metadata('x'*150, 'invalid')), 100)
+    def test_zero_limit_is_empty(self):
+        self.assertEqual(safe_metadata('xyz', 0), '')
 
 if __name__ == '__main__': unittest.main()
