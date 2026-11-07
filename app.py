@@ -111,7 +111,7 @@ def submit():
     if any(not isinstance(data.get(field), str) for field in ('reg_number', 'full_name', 'company')):
         return jsonify({'success': False, 'message': 'Attendance fields must be text.'}), 400
     reg_number = data['reg_number'].strip().upper()
-    full_name = data['full_name'].strip()
+    full_name = ' '.join(data['full_name'].split())
     company = data['company'].strip()
     user_agent = request.headers.get('User-Agent', '')[:512]
     ip = get_ip()
