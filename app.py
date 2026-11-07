@@ -141,7 +141,7 @@ def submit():
 
     # Build device fingerprint
     fingerprint_data = {
-        'user_agent': user_agent,
+        'user_agent': user_agent[:512],
         'screen_resolution': safe_metadata(data.get('screen_resolution'), 20),
         'timezone': safe_metadata(data.get('timezone'), 50),
         'language': safe_metadata(data.get('language'), 20),
