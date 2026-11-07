@@ -75,7 +75,7 @@ def safe_coordinate(value, bound):
         number = float(value)
         if not math.isfinite(number) or not (-bound <= number <= bound):
             return ''
-        return str(number)
+        return str(round(number, 6))
     except (TypeError, ValueError):
         return ''
 
