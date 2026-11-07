@@ -12,5 +12,9 @@ class AdminAuthenticationTest(unittest.TestCase):
         with patch.dict(os.environ, {'ADMIN_TOKEN':'weak'}):
             with app.test_client() as client:
                 self.assertEqual(client.get('/admin', headers={'X-Admin-Token':'weak'}).status_code,401)
+    def test_oversized_token_is_rejected(self):
+        with patch.dict(os.environ, {'ADMIN_TOKEN': 'a'*32}):
+            with app.test_client() as client:
+                self.assertEqual(client.get('/admin', headers={'X-Admin-Token':'a'*300}).status_code, 401)
 
 if __name__ == '__main__': unittest.main()
