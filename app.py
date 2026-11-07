@@ -115,6 +115,8 @@ def submit():
     if any(ord(char) < 32 or ord(char) == 127 for char in data['reg_number']):
         return jsonify({'success': False, 'message': 'Invalid registration characters.'}), 400
     reg_number = data['reg_number'].strip().upper()
+    if any(ord(char) < 32 or ord(char) == 127 for char in data['full_name']):
+        return jsonify({'success': False, 'message': 'Invalid name characters.'}), 400
     full_name = ' '.join(data['full_name'].split())
     company = data['company'].strip()
     user_agent = request.headers.get('User-Agent', '')[:512]
