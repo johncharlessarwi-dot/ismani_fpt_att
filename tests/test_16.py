@@ -25,6 +25,8 @@ class CoordinateValidationTests(unittest.TestCase):
         self.assertEqual(safe_coordinate('1.123456789', 90), '1.123457')
     def test_reject_latitude_over_ninety(self):
         self.assertEqual(safe_coordinate('90.1', 90), '')
+    def test_allow_longitude_dateline(self):
+        self.assertEqual(safe_coordinate('-180', 180), '-180.0')
 
 if __name__ == '__main__':
     unittest.main()
