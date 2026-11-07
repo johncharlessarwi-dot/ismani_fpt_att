@@ -21,6 +21,8 @@ class CoordinateValidationTests(unittest.TestCase):
 
     def test_reject_boolean_latitude(self):
         self.assertEqual(safe_coordinate(True, 90), '')
+    def test_rounds_location_precision(self):
+        self.assertEqual(safe_coordinate('1.123456789', 90), '1.123457')
 
 if __name__ == '__main__':
     unittest.main()
