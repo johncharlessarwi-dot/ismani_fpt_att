@@ -90,6 +90,7 @@ def add_security_headers(response):
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Permitted-Cross-Domain-Policies'] = 'none'
     response.headers['Referrer-Policy'] = 'no-referrer'
+    response.headers['Permissions-Policy'] = 'camera=(), microphone=(), payment=()'
     if request.path in ('/submit', '/admin'):
         response.headers['Cache-Control'] = 'no-store, private'
     return response
