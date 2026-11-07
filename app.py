@@ -64,6 +64,7 @@ def get_ip():
 
 
 def safe_metadata(value, limit=100):
+    limit = max(0, min(limit, 512)) if isinstance(limit, int) else 100
     return value[:limit] if isinstance(value, str) else ''
 
 
