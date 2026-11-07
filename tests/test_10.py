@@ -10,5 +10,9 @@ class AdminHeaderAcceptanceTest(unittest.TestCase):
                 response = client.get('/admin', headers={'X-Admin-Token': 'a' * 32})
                 self.assertEqual(response.status_code, 200)
 
+    def test_admin_success_is_private(self):
+        with patch.dict(os.environ, {'ADMIN_TOKEN':'a'*32}):
+            with app.test_client() as client:
+                self.assertIn('no-store',client.get('/admin', headers={'X-Admin-Token':'a'*32}).headers.get('Cache-Control',''))
 if __name__ == '__main__':
     unittest.main()
