@@ -10,4 +10,7 @@ class RegistrationFormatTest(unittest.TestCase):
     def test_nul_registration_rejected(self):
         with app.test_client() as client:
             self.assertEqual(client.post('/submit', json={'reg_number':'T12\u0000X','full_name':'Student','company':'Ismani Tours and Safari'}).status_code,400)
+    def test_single_character_registration_rejected(self):
+        with app.test_client() as client:
+            self.assertEqual(client.post('/submit', json={'reg_number':'T','full_name':'Student','company':'Ismani Tours and Safari'}).status_code,400)
 if __name__ == '__main__': unittest.main()
