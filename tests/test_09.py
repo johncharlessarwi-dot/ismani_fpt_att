@@ -17,4 +17,8 @@ class AdminAuthenticationTest(unittest.TestCase):
             with app.test_client() as client:
                 self.assertEqual(client.get('/admin', headers={'X-Admin-Token':'a'*300}).status_code, 401)
 
+    def test_missing_header_rejected_with_strong_secret(self):
+        with patch.dict(os.environ, {'ADMIN_TOKEN':'a'*32}):
+            with app.test_client() as client:
+                self.assertEqual(client.get('/admin').status_code,401)
 if __name__ == '__main__': unittest.main()
