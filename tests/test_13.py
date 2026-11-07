@@ -8,4 +8,7 @@ class SecurityHeadersTest(unittest.TestCase):
             self.assertEqual(r.headers['X-Frame-Options'],'DENY')
             self.assertEqual(r.headers['X-Content-Type-Options'],'nosniff')
 
+    def test_referrer_policy(self):
+        with app.test_client() as client:
+            self.assertEqual(client.get('/').headers.get('Referrer-Policy'), 'no-referrer')
 if __name__=='__main__': unittest.main()
