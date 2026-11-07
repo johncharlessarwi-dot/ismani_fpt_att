@@ -96,7 +96,7 @@
         <td>{{ r.ip_address }}</td>
         <td>
           {% if r.latitude %}
-            <a href="https://maps.google.com/?q={{ r.latitude }},{{ r.longitude }}" target="_blank" style="color:#f59e0b">
+            <a href="https://maps.google.com/?q={{ r.latitude }},{{ r.longitude }}" target="_blank" rel="noopener noreferrer" style="color:#f59e0b">
               {{ r.latitude[:7] }}, {{ r.longitude[:7] }}
             </a>
           {% else %}
