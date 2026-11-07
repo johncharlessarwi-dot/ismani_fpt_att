@@ -10,4 +10,7 @@ class TypedFieldsTest(unittest.TestCase):
     def test_list_name_rejected(self):
         with app.test_client() as client:
             self.assertEqual(client.post('/submit', json={'reg_number':'T123','full_name':['Student'],'company':'Ismani Tours and Safari'}).status_code,400)
+    def test_nonstring_company_rejected(self):
+        with app.test_client() as client:
+            self.assertEqual(client.post('/submit', json={'reg_number':'T123','full_name':'Student','company':123}).status_code,400)
 if __name__ == '__main__': unittest.main()
