@@ -17,4 +17,6 @@ class MetadataTest(unittest.TestCase):
 
     def test_list_metadata_is_ignored(self):
         self.assertEqual(safe_metadata(['Chrome']), '')
+    def test_normal_language_tag(self):
+        self.assertEqual(safe_metadata('sw-TZ', 20), 'sw-TZ')
 if __name__ == '__main__': unittest.main()
