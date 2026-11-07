@@ -80,7 +80,7 @@ def safe_coordinate(value, bound):
 
 
 def build_fingerprint(data: dict) -> str:
-    raw = f"{data.get('user_agent')}{data.get('screen_resolution')}{data.get('timezone')}{data.get('language')}{data.get('canvas_hash')}"
+    raw = '|'.join(str(data.get(key, '')) for key in ('user_agent', 'screen_resolution', 'timezone', 'language', 'canvas_hash'))
     return hashlib.sha256(raw.encode()).hexdigest()
 
 
