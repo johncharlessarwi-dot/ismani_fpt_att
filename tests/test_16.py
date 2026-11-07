@@ -19,6 +19,8 @@ class CoordinateValidationTests(unittest.TestCase):
             with self.subTest(value=value):
                 self.assertEqual(safe_coordinate(value, 90), '')
 
+    def test_reject_boolean_latitude(self):
+        self.assertEqual(safe_coordinate(True, 90), '')
 
 if __name__ == '__main__':
     unittest.main()
