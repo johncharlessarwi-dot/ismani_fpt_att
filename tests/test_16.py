@@ -23,6 +23,8 @@ class CoordinateValidationTests(unittest.TestCase):
         self.assertEqual(safe_coordinate(True, 90), '')
     def test_rounds_location_precision(self):
         self.assertEqual(safe_coordinate('1.123456789', 90), '1.123457')
+    def test_reject_latitude_over_ninety(self):
+        self.assertEqual(safe_coordinate('90.1', 90), '')
 
 if __name__ == '__main__':
     unittest.main()
