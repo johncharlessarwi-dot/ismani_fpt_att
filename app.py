@@ -89,6 +89,8 @@ def add_security_headers(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['Referrer-Policy'] = 'no-referrer'
+    if request.path in ('/submit', '/admin'):
+        response.headers['Cache-Control'] = 'no-store, private'
     return response
 
 
