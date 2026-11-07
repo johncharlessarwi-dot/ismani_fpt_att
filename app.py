@@ -112,6 +112,8 @@ def submit():
         return jsonify({'success': False, 'message': 'Attendance fields must be text.'}), 400
     if len(data['reg_number']) > 100:
         return jsonify({'success': False, 'message': 'Registration number is too long.'}), 400
+    if any(ord(char) < 32 or ord(char) == 127 for char in data['reg_number']):
+        return jsonify({'success': False, 'message': 'Invalid registration characters.'}), 400
     reg_number = data['reg_number'].strip().upper()
     full_name = ' '.join(data['full_name'].split())
     company = data['company'].strip()
