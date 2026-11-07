@@ -10,5 +10,7 @@ class MetadataTest(unittest.TestCase):
         self.assertEqual(safe_metadata('abc\n\tdef'), 'abcdef')
     def test_limit_is_clamped(self):
         self.assertEqual(len(safe_metadata('x'*1000, 1000)), 512)
+    def test_invalid_limit_falls_back(self):
+        self.assertEqual(len(safe_metadata('x'*150, 'invalid')), 100)
 
 if __name__ == '__main__': unittest.main()
