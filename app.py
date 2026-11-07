@@ -112,7 +112,7 @@ def submit():
     reg_number = data['reg_number'].strip().upper()
     full_name = data['full_name'].strip()
     company = data['company'].strip()
-    user_agent = request.headers.get('User-Agent', '')
+    user_agent = request.headers.get('User-Agent', '')[:512]
     ip = get_ip()
     today = date.today()
 
