@@ -23,3 +23,8 @@ class AttendanceSecurityAuditTests(unittest.TestCase):
         with app.test_client() as client:
             response = client.post('/submit', data="null", content_type='application/json')
             self.assertEqual(response.status_code, 400)
+
+    def test_reject_json_boolean(self):
+        with app.test_client() as client:
+            response = client.post('/submit', data="true", content_type='application/json')
+            self.assertEqual(response.status_code, 400)
