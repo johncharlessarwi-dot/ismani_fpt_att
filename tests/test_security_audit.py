@@ -222,3 +222,8 @@ class AttendanceSecurityAuditTests(unittest.TestCase):
         with app.test_client() as client:
             response = client.post('/submit', json={ 'reg_number': 'T/DEG/2025/0817', 'full_name': 'Test Student', 'company': 'Ismani Tours and Safari' }, headers={'User-Agent':''})
             self.assertEqual(response.status_code, 400)
+
+    def test_reject_user_agent_whitespace(self):
+        with app.test_client() as client:
+            response = client.post('/submit', json={ 'reg_number': 'T/DEG/2025/0817', 'full_name': 'Test Student', 'company': 'Ismani Tours and Safari' }, headers={'User-Agent':'   '})
+            self.assertEqual(response.status_code, 400)
