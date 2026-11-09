@@ -232,3 +232,8 @@ class AttendanceSecurityAuditTests(unittest.TestCase):
         with app.test_client() as client:
             response = client.get('/admin', headers={})
             self.assertEqual(response.status_code, 401)
+
+    def test_deny_admin_short(self):
+        with app.test_client() as client:
+            response = client.get('/admin', headers={'X-Admin-Token':'short'})
+            self.assertEqual(response.status_code, 401)
