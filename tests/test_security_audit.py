@@ -140,3 +140,10 @@ class AttendanceSecurityAuditTests(unittest.TestCase):
             data['full_name'] = 'John\tDoe'
             response = client.post('/submit', json=data, headers={'User-Agent':'AuditClient/1.0'})
             self.assertEqual(response.status_code, 400)
+
+    def test_reject_name_del(self):
+        with app.test_client() as client:
+            data = { 'reg_number': 'T/DEG/2025/0817', 'full_name': 'Test Student', 'company': 'Ismani Tours and Safari' }
+            data['full_name'] = 'John\x7fDoe'
+            response = client.post('/submit', json=data, headers={'User-Agent':'AuditClient/1.0'})
+            self.assertEqual(response.status_code, 400)
