@@ -97,3 +97,9 @@ jobs:
         env:
           SECRET_KEY: test-only-secret-key
           ADMIN_TOKEN: test-only-admin-token-1234567890
+
+      - name: Security regression suite
+        run: python -m unittest discover -s tests -p 'test_security_audit.py' -v
+        env:
+          SECRET_KEY: test-only-secret-key
+          ADMIN_TOKEN: test-only-admin-token-1234567890
