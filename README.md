@@ -12,16 +12,6 @@
 
 <div align="center">
 
-<!-- 🌊 ANIMATED HERO HEADER -->
-
-<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:020024,25:090979,55:0077FF,80:00D4FF,100:FFD700&text=FPT%20HR%20REPORT&fontSize=48&fontColor=FFFFFF&animation=fadeIn&fontAlignY=36&desc=SMART%20ATTENDANCE%20%7C%20HR%20INTELLIGENCE%20%7C%20DIGITAL%20ACCOUNTABILITY&descAlignY=58&descSize=13" width="100%"/>
-
-<!-- ⚡ ANIMATED TYPING EFFECT -->
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=19&pause=1000&color=00D4FF&center=true&vCenter=true&width=850&lines=Smart+FPT+Attendance+Management;Digital+HR+Monitoring+System;Device-Aware+Attendance+Verification;Built+for+Tourism+%26+Safari+Operations;Track.+Verify.+Manage.+Improve." alt="Animated typing banner"/>
-
-<br/>
-
 <a href="https://v2.visitkili.com">
   <img src="https://img.shields.io/badge/🌐_LIVE_SYSTEM-v2.visitkili.com-0077FF?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live system"/>
 </a>
@@ -37,10 +27,6 @@
 A Flask-based attendance tracking application designed to help tourism and safari businesses record trainee attendance, reduce duplicate submissions, and improve HR visibility through a centralized digital workflow.
 
 **Built for:** Isamani Tours & Safari · Visit Kili Adventures · Kilinge Adventures
-
-<br/>
-
-<img src="https://media.giphy.com/media/L8K62iTDkzGX6/giphy.gif" width="240" alt="Animated technology illustration"/>
 
 </div>
 
