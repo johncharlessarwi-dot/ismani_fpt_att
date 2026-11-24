@@ -11,6 +11,8 @@
     h1 { color: #f59e0b; font-size: 22px; margin-bottom: 4px; }
     .sub { color: #6b7280; font-size: 13px; margin-bottom: 32px; }
 
+    nav { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+    nav a { color: #fbbf24; padding: .5rem 0; }
     .stats { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
     .stat {
       background: #111827;
@@ -45,6 +47,11 @@
   <h1>FPT Attendance Dashboard</h1>
   <p class="sub">{{ today.strftime('%A, %d %B %Y') }} &mdash; Admin view</p>
 
+  <nav aria-label="Attendance navigation">
+    <a href="{{ url_for('index') }}">Check-in form</a>
+    <a href="#today">Today’s attendance</a>
+    <a href="#recent">Recent records</a>
+  </nav>
   <div class="stats">
     <div class="stat">
       <div class="num">{{ records|length }}</div>
@@ -64,7 +71,7 @@
     </div>
   </div>
 
-  <h2>Today's Attendance</h2>
+  <h2 id="today">Today's Attendance</h2>
   <table>
     <thead>
       <tr>
@@ -110,7 +117,7 @@
     </tbody>
   </table>
 
-  <h2>Recent Records (Last 100)</h2>
+  <h2 id="recent">Recent Records (Last 100)</h2>
   <table>
     <thead>
       <tr>
